@@ -22,7 +22,7 @@ char **strtow(char *str, char *d)
 
 	if (digits == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
+	s = malloc((1 + digits) * sizeof(char *));
 	if (!s)
 		return (NULL);
 	for (a = 0, b = 0; b < digits; b++)
@@ -32,7 +32,7 @@ char **strtow(char *str, char *d)
 		c = 0;
 		while (!is_delim(str[a + c], d) && str[a + c])
 			c++;
-		s[b] = malloc((k + 1) * sizeof(char));
+		s[b] = malloc((c + 1) * sizeof(char));
 		if (!s[b])
 		{
 			for (c = 0; c < b; c++)

@@ -18,8 +18,8 @@ int hsh(info_t *info, char **av)
 		if (interactive(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		r = get_input(info);
-		if (r != -1)
+		z = get_input(info);
+		if (z != -1)
 		{
 			set_info(info, av);
 			builtin_ret = find_builtin(info);
@@ -68,10 +68,10 @@ int find_builtin(info_t *info)
 	};
 
 	for (a = 0; builtintbl[a].type; a++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+		if (_strcmp(info->argv[0], builtintbl[a].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_ret = builtintbl[a].func(info);
 			break;
 		}
 	return (built_in_ret);
@@ -97,7 +97,7 @@ void find_cmd(info_t *info)
 	for (a = 0, c = 0; info->arg[a]; a++)
 		if (!is_delim(info->arg[a], " \t\n"))
 			c++;
-	if (!k)
+	if (!c)
 		return;
 
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);

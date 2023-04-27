@@ -14,8 +14,8 @@ int main(int ac, char **av)
 
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
-			: "=r" (fd)
-			: "r" (fd));
+			: "=r" (fm)
+			: "r" (fm));
 
 	if (ac == 2)
 	{
@@ -35,7 +35,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfm = fm;
+		info->readfd = fm;
 	}
 	populate_env_list(info);
 	read_history(info);
